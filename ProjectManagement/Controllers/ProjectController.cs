@@ -55,7 +55,7 @@ namespace ProjectManagement.Controllers
                     CreationBy = p.CreationBy,
                     CreationDate = p.CreationDate,
                     ModifiedBy = p.ModifiedBy,
-                    ModifiedDate = p.ModifiedDate,
+                    ModifiedDate = p.ModifiedDate,  
                     ClientName = p.Client.Name,
                     ProjectStatusName = p.ProjectStatu.Description,
                     StartDatePlanStr = p.StartDatePlan.ToString(),
