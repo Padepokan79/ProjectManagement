@@ -112,7 +112,7 @@ namespace ProjectManagement.Controllers
                 result.Status = false;
                     //commit
             }
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);   
         }
 
 
