@@ -28,7 +28,7 @@ namespace ProjectManagement.Controllers
             //var project = db.Projects.Include(p => p.Client).Include(p => p.ProjectStatu).OrderBy(s => s.ProjectId);
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            //return View(project.ToPagedList(pageNumber, pageSize));
+            //return View(project.ToPagedList(pageNumber, pageSize)); 
             //return View(project.ToList());
 
             return View();
