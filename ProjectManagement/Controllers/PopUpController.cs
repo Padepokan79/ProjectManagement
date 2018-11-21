@@ -52,7 +52,7 @@ namespace ProjectManagement.Controllers
                     ProjectStatusId = status,
 
                 };db.Projects.Add(pro);
-                db.SaveChanges();
+                db.SaveChanges(); 
                 result.Message = "Berhasil";
 
             }

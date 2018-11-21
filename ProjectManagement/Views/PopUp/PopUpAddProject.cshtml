@@ -293,7 +293,7 @@
             var txtModifiedBy = $("#txtModifiedBy").val(); 
             var txtModifiedDate = $("#txtModifiedDate").val();
             $.ajax({
-                type: "POST",
+                type: "POST", 
                 url: "PopUp/insert",
 
                 data:JSON.stringify({ '"projectNama: "': +txtProjectName.val() + '", StartDatePlan: "' + txtStartDatePlan.val() +
