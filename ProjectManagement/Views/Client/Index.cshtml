@@ -1,0 +1,57 @@
+﻿@model ProjectManagement.Models.ClientViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container" style="margin-top:5%">
+    <a href='#' class='btn btn-info' onclick='addNewClient(0)'>Add Client</a><br /><br />
+    <table class="table table-striped">
+        <thead >
+            <tr>
+                @*<th>No</th>*@
+                <th>Client Id</th>
+                <th>Nama Client</th>
+                <th>Contact Person</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>              
+            </tr>
+        </thead>
+        <tbody id="GetClientList">
+            <tr id="LoadingStatus" style="color:blue">
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("#LoadingStatus").html("Loading...");
+    $.get("/Client/Read", null, DataBind);
+    function DataBind(ClientList) {
+        var no = 1;
+        var SetData = $("#GetClientList");
+        for (var index = 0; index < ClientList.length; index++) {
+            var Data = "<tr class='row_" + ClientList[index].ClientId + "'>" +
+                //"<td>" + no + "<td>" +
+                "<td>" + ClientList[index].ClientId + "<td>" +
+                "<td>" + ClientList[index].Name + "<td>" +
+                "<td>" + ClientList[index].ContactPerson + "<td>" +
+                "<td>" + ClientList[index].Phone + "<td>" +
+                "<td>" + ClientList[index].Email + "<td>" +
+                "<td>" + "<a href='#' class='btn btn-warning' onclick='EditClient()'><span class='glyphicon glyphicon-edit'></span></a>" + "</td>" +
+                "<td>" + "<a href='#' class='btn btn-warning' onclick='RemoveClient()'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>" +
+                "</tr>";
+            no++;
+
+            SetData.append(Data);
+            $("#LoadingStatus").html(" ");
+
+       }
+    }
+</script>
+
