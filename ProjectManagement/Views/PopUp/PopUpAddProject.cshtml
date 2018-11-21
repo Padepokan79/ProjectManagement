@@ -1,0 +1,337 @@
+﻿@{
+    ViewBag.Title = "Add Project";
+}
+<style>
+    .red_border {
+        border: 1px solid #e46262;
+    }
+
+    .LoadingDiv {
+        top: 0;
+        left: 0;
+        position: fixed;
+        opacity: 0.97;
+        z-index: 10000000;
+        background: Black;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+    }
+
+    .dataTables_filter {
+        float: right;
+    }
+</style>
+
+
+
+<div class="btn btn-primary" data-toggle="modal" data-target="#ProjectModal">Add</div>
+
+@*POp Up*@
+<div class="modal fade" id="ProjectModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h3 class="modal-title">Add Project</h3>
+            </div>
+            <div class="modal-body">
+               @* @using (Html.BeginForm("Insert", "PopUp"))
+    {*@
+                    <table align="center">
+                        <tr>
+                            <td>
+                                Project Name
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtProjectName"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    Start Date Plan
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="txtStartDatePlan" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    Description
+                                </div>
+
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtDescription" />
+                                </div>
+                            </td>
+                            <td>
+
+                                <div class="form-group">
+                                    End Date Plan
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="txtEndDatePlan" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="form-group">
+                                    Client
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    
+                                    @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "Form-Control" })
+
+                                </div>
+                            </td>
+                            <td>
+
+                                <div class="form-group">
+                                    Start Date Actual
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="txtStartDateActual" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    PIC
+                                </div>
+
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtPic" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    End Date Actual
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="EndDateActual" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="form-group">
+                                    Project Status
+                                </div>
+
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <select id="status">
+                                        <option value="1">Desc 1</option>
+                                        <option value="2">Desc 2</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    Mandays Estimation
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtMadaysEstimation" />    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    Creation BY
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtCreateBy" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    MAndays Estimation Call
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtMandaysEstCall" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    Creation Date
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="CreationDate" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    Modified By
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="text" id="txtModifiedBy" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    Modified Date
+                                </div>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <div class="col-md-10">
+                                    <input type="date" id="txtModifiedDate" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <input type="button" value="save" id="btnAdd"/>
+                    </div>
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="dvLoader" class="LoadingDiv" style="display: none;">
+    <table style="height: 100%; margin: auto;">
+        <tr>
+            <td style="vertical-align: middle;">
+                <center>
+                    <img src="http://www.girlsgotit.org/images/ajax-loader.gif" alt="Loading" />
+                </center>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    $(Document).ready(function(){
+        windowResize();
+        $(window).resize(function () {
+            windowResize();
+        });
+        function CheckRequiredFields() {
+            var isValid = true;
+            $('.required').each(function () {
+                if ($.trim($(this).val()) == '') {
+                    isValid = false;
+                    $(this).addClass('red_border');
+
+
+                }
+                else {
+                    $(this).removeClass('red_border');
+
+                }
+            });
+            return isValid;
+        }
+
+
+
+        $("#btnAdd").click(function () {
+            var txtProjectName = $("#txtProjectName").val();
+            var txtStartDatePlan = $("#txtStartDatePlan").val();
+            var txtDescription = $("#txtDescription").val();
+            var txtEndDatePlan = $("#txtEndDatePlan").val();
+            var txtStartDateActual = $("#txtStartDateActual").val();
+            var EndDateActual = $("#EndDateActual");
+            var txtPic = $("#txtPic").val();
+            var status = $("#status").val();
+            var txtMadaysEstimation = $("#txtMadaysEstimation").val();
+            var txtMandaysEstCall = $("#txtMandaysEstCall").val();
+            var CreationBy = $("#txtCreateBy")
+            var CreationDate = $("#CreationDate").val();
+            var txtModifiedBy = $("#txtModifiedBy").val();
+            var txtModifiedDate = $("#txtModifiedDate").val();
+            $.ajax({
+                type: "POST",
+                url: "PopUp/insert",
+
+                data:JSON.stringify({ '"projectNama: "': +txtProjectName.val() + '", StartDatePlan: "' + txtStartDatePlan.val() +
+                    '", Description: "' + txtDescription.val() + '", EndDatePlan: "' + txtEndDatePlan.val() +
+                    '", StartDateActual: "' + status.val() + '", MadaysEstimation: "' + txtMadaysEstimation.val() +
+                    '",MandaysEstCall: "' + txtMandaysEstCall.val() + '", CreationDate: "' + CreationDate.val() +
+                    '", StartDateActual: "' + txtStartDateActual.val() + '", EndDateActual: "' + EndDateActual.val() +
+                    '", PIC: "' + txtPic.val() + '", CreationBy: "' + CreationBy.val() +
+                    '",ModifiedBy: "' + txtModifiedBy.val() + '",ModifiedDate: "' + txtModifiedDate.val() +
+                    '"'}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.Status == "True") {
+                        toastr.success(r.Message);
+                        clear();
+                        display();
+                        $('#ProjectModal').hide();
+                    }
+                    else {
+                        toastr.success(r.Message);
+                        clear();
+                        display();
+                        $('#ProjectModal').hide();
+                    }
+
+                }
+            });
+});
+function clear() {
+    $("#txtNamaClient").val("");
+    $("#txtContactPerson").val("");
+    $("#txtPhone").val("");
+    $("#txtEmail").val("");
+    $('#btnSave').val("Save Client");
+    $("#hdnPID").val(0);
+}
+
+
+    });
+    </script>
