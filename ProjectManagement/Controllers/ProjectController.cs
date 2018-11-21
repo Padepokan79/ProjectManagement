@@ -21,7 +21,7 @@ namespace ProjectManagement.Controllers
         public ActionResult Index(int? page = null)
         {
 
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name");
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name"); 
             ViewBag.ProjectStatusId = new SelectList(db.ProjectStatus, "ProjectStatusId", "Description");
             ViewBag.ProjectEntity = new Project();
 
