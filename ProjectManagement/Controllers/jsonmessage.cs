@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 
 namespace ProjectManagement.Controllers
-{
-    public class jsonMessage
+{ 
+    public class jsonmessage 
     {
         public string Message { get; set; }
         public string MessageList { get; set; }
         public bool Status { get; set; }
+
     }
 }
