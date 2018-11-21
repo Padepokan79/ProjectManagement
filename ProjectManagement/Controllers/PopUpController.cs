@@ -15,7 +15,7 @@ namespace ProjectManagement.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        } 
         public ActionResult PopUpAddProject()
         {
             ViewBag.ProjectStatus = new SelectList(db.ProjectStatus, "ProjectStatusId", "Description");

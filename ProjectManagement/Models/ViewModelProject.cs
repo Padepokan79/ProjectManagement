@@ -6,6 +6,6 @@ using System.Web;
 namespace ProjectManagement.Models
 {
     public class ViewModelProject
-    {
+    { 
     }
 }
