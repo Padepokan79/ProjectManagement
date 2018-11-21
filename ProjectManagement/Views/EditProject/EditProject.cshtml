@@ -1,0 +1,371 @@
+﻿@model ProjectManagement.Entites.Project
+
+@{
+    ViewBag.Title = "EditProject";
+}
+
+<hr>
+<!--<div class="form-group col-md-15">
+    <a href="#" onclick="EditData(3)"; return false;>Tes</a>
+</div>-->
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Project Information</h3>
+        </div>
+        <div class="panel-body">
+            @Html.Hidden("ProjectId" , new { @id = "txProjectId" })
+            <div class="form-group col-md-5">
+                @Html.Label("Project Name")
+                @Html.Editor("ProjectName", new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Project Name", required = "", id = "txProjectName" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Start Date Plan")
+                @Html.Editor("StartDatePlan", new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Start Date Plan", type = "date" ,  id = "txStartDate" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Description")
+                @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Description", id = "txDescription" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("End Date Plan")
+                @Html.Editor("EndDatePlan", new { htmlAttributes = new { @class = "form-control",  type = "date", id = "txEndDate" } })
+            </div>
+            <div class="form-group col-md-5">
+
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Start Date Actual")
+                @Html.Editor("StartDateActual", new { htmlAttributes = new { @class = "form-control",  type = "date", id = "txStartDateActual" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Client Name")
+                @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control", id = "txClientName" })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("End Date Actual")
+                @Html.Editor("EndDateActual", new { htmlAttributes = new { @class = "form-control",  type = "date", id = "txEndDateActual" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("PIC")
+                @Html.DropDownList("PIC", null, htmlAttributes: new { @class = "form-control", id = "PIC" })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Mandays Estimation")
+                @Html.Editor("MandaysEstimation", new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Mandays Estimation", id = "txMandays" } })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Project Status")
+                @Html.DropDownList("ProjectStatusId", null, htmlAttributes: new { @class = "form-control", id = "txProjectStatus" })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.Label("Mandays Estimation Cal")
+                @Html.Editor("MandaysEstimationCal", new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Mandays Estimation Cal", id = "txMandaysCal" } })
+            </div>
+            <div class="form-group col-md-1">
+                <div style="float: right; display:inline-block;">
+                    <input class="btn btn-primary" name="submitButton" id="btnUpdate" value="Save" type="submit">
+                </div>
+            </div>
+        </div>
+    </div><hr />
+    <div class="form-group col-md-15">
+        <div style="float: right; display:inline-block;">
+            <input class="btn btn-primary" name="submitButton" id="btnSave" value="Add" type="submit">
+        </div>
+    </div>
+    <div class="form-group col-md-1">
+         <h3>Modul</h3>
+    </div>
+    <table id="tblModul" class="table table-bordered table-striped table-responsive table-hover">
+        <thead>
+            <tr>
+                <th align="left" class="productth">Modul Number</th>
+                <th align="left" class="productth">Modul Name</th>
+                <th align="left" class="productth">Description</th>
+                <th align="left" class="productth">PIC</th>
+                <th align="left" class="productth">Modul Status</th>
+                <th align="left" class="productth">Schedule Details</th>
+                <th align="left" class="productth">Mandays Estimations</th>
+                <th align="left" class="productth">Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <hr/>
+    <div class="form-group col-md-15">
+        <div style="float: right; display:inline-block;">
+            <input class="btn btn-primary" name="submitButton" id="btnSave" value="Add" type="submit">
+        </div>
+    </div>
+    <div class="form-group col-md-1">
+        <h4>Project Document</h4>
+    </div>
+    <table id="tblDoc" class="table table-bordered table-striped table-responsive table-hover">
+        <thead>
+            <tr>
+                <th align="left" class="productth">Document Type</th>
+                <th align="left" class="productth">Document Name</th>
+                <th align="left" class="productth">File</th>
+                <th align="left" class="productth">Version</th>
+                <th align="left" class="productth">Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <hr />
+    <div class="form-group col-md-15">
+        <div style="float: right; display:inline-block;">
+            <input class="btn btn-primary" name="submitButton" id="btnSave" value="Add" type="submit">
+        </div>
+    </div>
+    <div class="form-group col-md-1">
+        <h4>Requirement</h4>
+    </div>
+    <table id="tblReq" class="table table-bordered table-striped table-responsive table-hover">
+        <thead>
+            <tr>
+                <th align="left" class="productth">Requirement Type</th>
+                <th align="left" class="productth">Requirement Number</th>
+                <th align="left" class="productth">Description</th>
+                <th align="left" class="productth">Level</th>
+                <th align="left" class="productth">Creation Details</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <hr />
+    <div class="form-group col-md-15">
+        <div style="float: right; display:inline-block;">
+            <input class="btn btn-primary" name="submitButton" id="btnSave" value="Add" type="submit">
+        </div>
+    </div>
+    <div class="form-group col-md-1">
+        <h4>Project Schedule</h4>
+    </div>
+    <table id="tblSchedule" class="table table-bordered table-striped table-responsive table-hover">
+        <thead>
+            <tr>
+                <th align="left" class="productth">Project Name</th>
+                <th align="left" class="productth">Version</th>
+                <th align="left" class="productth">Schedule Details</th>
+                <th align="left" class="productth">Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            LoadDataModul();
+            LoadDataDoc();
+            LoadDataReq();
+            LoadDataSchedule();
+        });
+        function LoadDataSchedule() {
+            $("#tblSchedule tbody tr").remove();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSchedule")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='productth'>" + item.ProjectId + "</td>"
+                        + "<td class='productth'>" + item.Version + "</td>"
+                        + "<td class='productth'>" + item.Version + "</td>"
+                        + '<td><a href="#" onclick="return GetById(' + item.DocumentId + ')">Edit</a>';
+                        + "</tr>";
+                        $('#tblSchedule tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+        function LoadDataReq() {
+            $("#tblReq tbody tr").remove();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRequirement")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='productth'>" + item.RequirementTypeId +"</td>"
+                        + "<td class='productth'>" + item.requirementName + "</td>"
+                        + "<td class='productth'>" + item.Description + "</td>"
+                        + "<td class='productth'>" + item.Level + "</td>"
+                        + "<td class='productth'>" + item.Level + "</td>"
+                        + "</tr>";
+                        $('#tblReq tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+        function LoadDataDoc() {
+            $("#tblDoc tbody tr").remove();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProjectDoc")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='productth'>" + item.DocumentTypeId + "</td>"
+                        + "<td class='productth'>" + item.DocumentName + "</td>"
+                        + "<td class='productth'>" + item.FilePath + "</td>"
+                        + "<td class='productth'>" + item.Version + "</td>"
+                        + '<td><a href="#" onclick="return GetById(' + item.DocumentId + ')">Edit</a>';
+                        + "</tr>";
+                        $('#tblDoc tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+
+        function LoadDataModul() {
+            $("#tblModul tbody tr").remove();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetModul")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='productth'>" + item.ModulNumber + "</td>"
+                        + "<td class='productth'>" + item.ModulName + "</td>"
+                        + "<td class='productth'>" + item.Description + "</td>"
+                        + "<td class='productth'>" + item.PIC + "</td>"
+                        + "<td class='productth'>" + item.PIC + "</td>"
+                        + "<td class='productth'>" + item.PIC + "</td>"
+                        + "<td class='productth'>" + item.PIC + "</td>"
+                        + '<td><a href="#" onclick="return GetById(' + item.ModulNumber + ')">Edit</a>';
+                        + "</tr>";
+                        $('#tblModul tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+       /* function EditData(row) {
+
+            var ProjectId = $(row).closest('tr').find('.ProjectId').html();
+            $("#txProjectId").val(parseInt(ProjectId));
+
+            var ProjectName = $(row).closest('tr').find('.ProjectName').html();
+            $('#txProjectName').val(Name);
+
+            var Description = $(row).closest('tr').find('.Description').html();
+            $('#txDescription').val(Description);
+
+            var ClientId = $(row).closest('tr').find('.ClientId').html();
+            $('#txClientName').val(ClientId);
+
+            var PIC = $(row).closest('tr').find('.PIC').html();
+            $('#txPIC').val(PIC);
+
+            var ProjectStatusId = $(row).closest('tr').find('.ProjectStatusId').html();
+            $('#txProjectStatusId').val(ProjectStatusId);
+
+            var StartDatePlan = $(row).closest('tr').find('.StartDatePlan').html();
+            $('#txStartDatePlan').val(StartDatePlan);
+
+            var EndDatePlan = $(row).closest('tr').find('.EndDatePlan').html();
+            $('#txEndDatePlan').val(EndDatePlan);
+
+            var StartDateActual = $(row).closest('tr').find('.StartDateActual').html();
+            $('#txStartDateActual').val(StartDateActual);
+
+            var EndDateActual = $(row).closest('tr').find('.EndDateActual').html();
+            $('#txEndDateActual').val(EndDateActual);
+
+            var MandaysEstimation = $(row).closest('tr').find('.MandaysEstimation').html();
+            $('#txMandaysEstimation').val(MandaysEstimation);
+
+            var MandaysEstimationCal = $(row).closest('tr').find('.MandaysEstimationCal').html();
+            $('#txMandaysEstimationCal').val(MandaysEstimationCal);
+
+            $('#btnUpdate').val("Save");
+
+        }*/
+
+      //  $(document).ready(function () {
+        $("#btnUpdate").click(function () {
+            alert("Masuk");
+                var project =
+                    {
+                        ProjectId: /*$("#txProjectId").val()*/3,
+                        ProjectName: $("#txProjectName").val()
+                        /*Description: $("#txDescription").val(),
+                        ClientId: $("#txClientName").val(),
+                        PIC: $("#txPIC").val(),
+                        ProjectStatusId: $("#txProjectStatus").val(),
+                        StartDatePlan: $("#txStartDate").val(),
+                        EndDatePlan: $("#txEndDate").val(),
+                        StartDateActual: $("#txStartDateActual").val(),
+                        EndDateActual: $("#txEndDateActual").val(),
+                        MandaysEstimation: $("#txMandays").val(),
+                        MandaysEstimationCal: $("#txMandaysCal").val()*/
+                    };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Update")',
+                    data: JSON.stringify(project),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        alert("Data has been added successfully.");
+                        LoadDataModul();
+                        LoadDataDoc();
+                        LoadDataReq();
+                        LoadDataSchedule();
+                    },
+                    error: function () {
+                        alert("Error while updating data");
+                    }
+                });
+            });
+      //  });
+    </script>
+}
+
+
+
+
+
