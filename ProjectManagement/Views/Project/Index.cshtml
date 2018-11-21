@@ -1,0 +1,228 @@
+﻿@*
+    @model PagedList.IPagedList<ProjectManagement.Entites.Project>
+    @using PagedList.Mvc
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+*@
+@model PagedList.IPagedList<ProjectManagement.Models.ProjectViewModel>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/page-project.js"></script>
+
+<script type="text/javascript">
+    function parseValue(source, dest) {
+        var sourceVar = document.getElementById(source);
+        var destVar = document.getElementById(dest);
+        destVar.value = sourceVar.value;
+    }
+</script>
+<h2>Search Form</h2>
+<form>
+    <table class="table" width="97%">
+        <tr>
+            <td>Project Name</td>
+            <td>:</td>
+            <td>
+                <input type="text" id="ProjectName" class="form-control" />
+            </td>
+            <td>Start Date Plan</td>
+            <td>: from</td>
+            <td>
+                <input type="date" id="FromDatePlan" class="form-control" />
+            </td>
+            <td>to</td>
+            <td>
+
+                <input type="date" id="ToDatePlan" class="form-control" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>Client Name</td>
+            <td>:</td>
+            <td>
+                @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control", id = "clientIdAwal", onChange = "parseValue('clientIdAwal','ClientId')" })
+                <input type="hidden" id="ClientId" class="form-control" />
+            </td>
+            <td>End Date Plan</td>
+            <td>: from</td>
+            <td>
+
+                <input type="date" id="EndFromDatePlan" class="form-control" />
+            </td>
+            <td>to</td>
+            <td>
+
+                <input type="date" id="EndToDatePlan" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Project Status</td>
+            <td>:</td>
+            <td>
+                @Html.DropDownList("ProjectStatusId", null, htmlAttributes: new { @class = "form-control", id = "projectStatusIdAwal", onChange = "parseValue('projectStatusIdAwal','ProjectStatusId')" })
+                <input type="hidden" id="ProjectStatusId" class="form-control" />
+            </td>
+            <td>Start Date Actual</td>
+            <td>: from</td>
+            <td>
+
+                <input type="date" id="FromDateActual" class="form-control" />
+            </td>
+            <td>to</td>
+            <td>
+
+                <input type="date" id="ToDateActual" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>PIC</td>
+            <td>:</td>
+            <td>
+                <input type="text" id="PIC" class="form-control" />
+            </td>
+            <td>End Date Actual</td>
+            <td>: from</td>
+            <td>
+
+                <input type="date" id="EndFromDateActual" class="form-control" />
+            </td>
+            <td>to</td>
+            <td>
+
+                <input type="date" id="EndToDateActual" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="right">
+                <input type="button" onclick="Search()" value="Filter" class="btn btn-primary" />
+            </td>
+        </tr>
+
+    </table>
+</form>
+<hr />
+
+<h2>Project List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Client Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                PIC
+            </th>
+            <th>
+                Project Status
+            </th>
+            <th>
+                Schedule Details
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody class="tbody"></tbody>
+</table>
+
+@*
+        <table class="table">
+            <tr>
+                <th>Project Name</th>
+                <th>Client Name</th>
+                <th>Description</th>
+                <th>PIC</th>
+                <th>Project Status</th>
+                <th>Schedule Detile</th>
+                <th>Action</th>
+
+            </tr>
+            <tbody >
+
+            </tbody>
+
+            @foreach (var item in Model)
+                    {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PIC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectStatu.Description)
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>Start Date Plan</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.StartDatePlan)</td>
+                            </tr>
+                            <tr>
+                                <td>End Date Plan</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.EndDatePlan)</td>
+                            </tr>
+                            <tr>
+                                <td>Start Date Actual</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.StartDateActual)</td>
+                            </tr>
+                            <tr>
+                                <td>End Date Actual</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.EndDateActual)</td>
+                            </tr>
+
+                        </table>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ProjectId })
+                    </td>
+                </tr>
+            }
+
+        <tr>
+            <td colspan="7">
+                Total Data : @Model.Count data
+            </td>
+        </tr>
+    </table>
+    <center>
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFiler = ViewBag.CurrentFilter }))
+
+    </center>
+*@
