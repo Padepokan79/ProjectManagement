@@ -1,0 +1,93 @@
+﻿@model ProjectManagement.Entites.ProjectDocument
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<!-- Modal -->
+<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Input/Edit Project Document</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateEdit", "ProjectDocument", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.DocumentId)
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <table class="table">
+                            <tr>
+                                <td>Document Type</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("DocumentTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Document Name</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.Editor("DocumentName", new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>File</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.Editor("FilePath", new { htmlAttributes = new { @type = "file" } })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Version</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.Editor("Version", new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="right">
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
