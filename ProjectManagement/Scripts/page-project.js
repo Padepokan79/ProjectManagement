@@ -39,7 +39,6 @@ function loadData() {
     });
 }
 
-
 function Search() {
     var valueSearch = {
         ProjectName: $('#ProjectName').val(),
