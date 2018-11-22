@@ -97,6 +97,7 @@ namespace ProjectManagement.Controllers
                     StartDateActualStr = p.StartDateActual.ToString(),
                     EndDateActualStr = p.EndDateActual.ToString()
                 });
+
             if (!(string.IsNullOrEmpty(valueSearch.ProjectName)))
             {
                 project = project.Where(d => d.ProjectName.ToLower().Contains(valueSearch.ProjectName.ToLower())).OrderBy(s => s.ProjectId);
