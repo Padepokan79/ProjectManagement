@@ -29,6 +29,9 @@ namespace ProjectManagement.Models
             ModifiedDate = project.ModifiedDate;
         }
         */
+
+
+
         public int ProjectId { get; set; }
 
         public int? ClientId { get; set; }
